@@ -1,14 +1,3 @@
-// let numero = parseInt(prompt("Ingrese un numero: "));
-
-// if (numero % 2 == 0) {
-//     resultado = "Par"
-// } else {
-//     resultado = "Impar"
-// }
-
-// alert("El numero es: " + resultado);
-
-
 arroba = false;
 
 while (arroba == false) {
@@ -23,5 +12,4 @@ while (arroba == false) {
     } else {
         alert("Bienvenido! " + mail)
     }
-
 }
