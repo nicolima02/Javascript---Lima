@@ -11,15 +11,6 @@ cantPr1Tot = 0;
 cantPr2Tot = 0;
 cantPr3Tot = 0;
 
-function sacarPr(producto, productoTot) {
-    producto = parseInt(prompt("Ingrese la cantidad que desea sacar: "));
-    while (producto > productoTot) {
-        alert("No es una opcion valida");
-        producto = parseInt(prompt("Ingrese la cantidad que desea sacar: "));
-    }
-    productoTot = productoTot - producto;
-}
-
 const sumaTot = (a, ca, b, cb, c, cc) => (a * ca) + (cb * b) + (c * cc);
 
 while (option != 0) {
