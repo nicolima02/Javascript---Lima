@@ -5,9 +5,9 @@ function Producto(nombre, precio, codigo, cantidadTotal) {
     this.cantidadTotal = cantidadTotal;
 }
 
-let producto1 = new Producto("Cartel neon 1", 500, "1111", 0);
-let producto2 = new Producto("Cartel neon 2", 1000, "2222", 0);
-let producto3 = new Producto("Cartel neon 3", 2000, "3333", 0);
+let producto1 = new Producto("Cartel naranja", 500, "1111", 0);
+let producto2 = new Producto("Cartel azul", 1000, "2222", 0);
+let producto3 = new Producto("Cartel violeta", 2000, "3333", 0);
 
 listaProducto = [producto1, producto2, producto3];
 
@@ -15,7 +15,13 @@ option = -1;
 
 total = 0;
 
-const sumaTot = (a, ca, b, cb, c, cc) => (a * ca) + (cb * b) + (c * cc);
+
+function sumaTot(lista, total) {
+    for (const i of lista) {
+        total += i.precio * i.cantidadTotal;
+    }
+    return total
+}
 
 while (option != 0) {
     total = 0;
@@ -25,17 +31,24 @@ while (option != 0) {
     optionCuota = -1;
     optionQuitar = -1;
     cantQuitar = 0;
+    optionFiltro = -1;
     const cuota3 = 1.10;
     const cuota6 = 1.20;
     const cuota12 = 1.30;
     const descuentoFt = 0.90;
-    option = parseInt(prompt("Ingrese un numero para navegar por el menu: \n 1)Agregar productos \n 2) Ver carrito \n 3) Sacar productos\n 0)SALIR"));
+    option = parseInt(prompt("Ingrese un numero para navegar por el menu: \n 1)Agregar productos \n 2) Ver carrito \n 3) Sacar productos\n 4) Filtrar\n 0)SALIR"));
 
 
 
     if (option == 1) {
+        msj = "Ingrese el numero del producto que desea agregar:";
+        num = 1;
+        for (const i of listaProducto) {
+            msj += "\n" + num + ") " + i.nombre;
+            num += 1;
+        }
         while (optionProducto != 0) {
-            optionProducto = parseInt(prompt("Ingrese el numero del producto que desea agregar:" + "\n1) " + producto1.nombre + "\n2) " + producto2.nombre + "\n3) " + producto3.nombre + "\n0) VOLVER"));
+            optionProducto = parseInt(prompt(msj + "\n0) VOLVER"));
             if (optionProducto == 1) {
                 cantProducto = parseInt(prompt("Ingresa la cantidad que desea agregar: "));
                 producto1.cantidadTotal = cantProducto + producto1.cantidadTotal;
@@ -54,6 +67,7 @@ while (option != 0) {
 
 
     } else if (option == 2) {
+        total = sumaTot(listaProducto, total)
         while (optionTot != 0) {
             optionTot = parseInt(prompt("Ingrese un numero para navegar por el menu: \n 1)Ver total \n 2) Pagar \n 0) VOLVER"));
 
@@ -61,7 +75,13 @@ while (option != 0) {
 
 
             if (optionTot == 1) {
-                alert("El total es: \n" + listaProducto[0].nombre + " x" + listaProducto[0].cantidadTotal + "\n" + listaProducto[1].nombre + " x" + listaProducto[1].cantidadTotal + "\n" + listaProducto[2].nombre + " x" + listaProducto[2].cantidadTotal + "\nSuma total: $" + sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio));
+                let msj = "El total es : ";
+                for (const i of listaProducto) {
+                    if (i.cantidadTotal != 0)
+                        msj += "\n" + i.nombre + " x" + i.cantidadTotal;
+
+                }
+                alert(msj + "\n\nTotal: $" + total);
 
 
 
@@ -81,17 +101,18 @@ while (option != 0) {
 
 
                             if (optionCuota == 1) {
-                                alert("La suma total en 3 cuotas queda en: $" + (cuota3 * (sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio))));
+
+                                alert("La suma total en 3 cuotas queda en: $" + (cuota3 * total));
 
 
 
                             } else if (optionCuota == 2) {
-                                alert("La suma total en 6 cuotas queda en: $" + (cuota6 * (sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio))));
+                                alert("La suma total en 6 cuotas queda en: $" + (cuota6 * total));
 
 
 
                             } else if (optionCuota == 3) {
-                                alert("La suma total en 12 cuotas queda en: $" + (cuota12 * (sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio))));
+                                alert("La suma total en 12 cuotas queda en: $" + (cuota12 * total));
 
 
 
@@ -104,13 +125,13 @@ while (option != 0) {
 
 
                     } else if (optionPagar == 2) {
-                        alert("La suma total es: " + "$" + sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio));
+                        alert("La suma total es: " + "$" + total);
 
 
 
 
                     } else if (optionPagar == 3) {
-                        alert("La suma total en cuotas queda en: $" + (descuentoFt * (sumaTot(producto1.cantidadTotal, producto1.precio, producto2.cantidadTotal, producto2.precio, producto3.cantidadTotal, producto3.precio))));
+                        alert("La suma total en cuotas queda en: $" + (descuentoFt * total));
                     }
                 }
             }
@@ -151,6 +172,36 @@ while (option != 0) {
                     cantQuitar = parseInt(prompt("Ingrese la cantidad que desea sacar: "));
                 }
                 producto3.cantidadTotal = producto3.cantidadTotal - cantQuitar;
+            }
+        }
+    } else if (option == 4) {
+        while (optionFiltro != 0) {
+            optionFiltro = parseInt(prompt("Ingrese un numero para navegar por el menu: \n 1) Filtrar por precio \n 2) Buscar por nombre \n 0) VOLVER"));
+            if (optionFiltro == 1) {
+                precioMin = parseFloat(prompt("Ingrese el valor minimo del precio: "));
+                precioMax = parseFloat(prompt("Ingrese el valor maximo del precio: "));
+                largo = 0;
+                const filtrado = listaProducto.filter((producto) => ((producto.precio <= precioMax) && (producto.precio >= precioMin)));
+                for (const i of filtrado) {
+                    largo += 1;
+                }
+                if (largo != 0) {
+                    msj = "Los productos encontrados en ese rango de precio son: ";
+                    for (const i of filtrado) {
+                        msj += "\n" + i.nombre + "   $" + i.precio;
+                    }
+                    alert(msj);
+                } else {
+                    alert("No se encontro ningun producto en ese rango de precio");
+                }
+            } else if (optionFiltro == 2) {
+                busqueda = prompt("Ingrese el nombre del producto que quiere buscar: ").toLowerCase();
+                const encontrado = listaProducto.find((producto) => (producto.nombre.toLowerCase()) === busqueda);
+                if (encontrado != undefined) {
+                    alert("El producto econtrado es: \n" + encontrado.nombre + "   $" + encontrado.precio);
+                } else {
+                    alert("El producto no se pudo encontrar")
+                }
             }
         }
     }
