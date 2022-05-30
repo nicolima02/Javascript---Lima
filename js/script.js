@@ -23,6 +23,10 @@ function sumaTot(lista, total) {
     return total
 }
 
+// let crearProducto = document.querySelector(".lista-productos");
+// crearProducto.innerHTML = "<p> asdasdasdasdasd </p>";
+// document.body.append(crearProducto);
+
 while (option != 0) {
     total = 0;
     optionProducto = -1;
@@ -36,6 +40,15 @@ while (option != 0) {
     const cuota6 = 1.20;
     const cuota12 = 1.30;
     const descuentoFt = 0.90;
+    let crearProducto = document.querySelector(".lista-productos");
+    crearProducto.innerHTML = `<p></p>`;
+    msj = " "
+    for (const element of listaProducto) {
+        if (element.cantidadTotal > 0) {
+            msj += element.nombre + "   x" + element.cantidadTotal + "\n";
+        }
+    }
+    crearProducto.innerText = `${msj}`;
     option = parseInt(prompt("Ingrese un numero para navegar por el menu: \n 1)Agregar productos \n 2) Ver carrito \n 3) Sacar productos\n 4) Filtrar\n 0)SALIR"));
 
 
