@@ -35,37 +35,35 @@ var g = document.getElementsByClassName('boton-agregar');
 for (var i = 0, len = g.length; i < len; i++) {
 
     (function(index) {
-        g[i].onclick = function() {
 
-            function abrirOpciones() {
-                contenedor[index].id = "contenedor-abierto";
-            }
-
-            function cerrarOpciones() {
-                contenedor[index].id = "contenedor-cerrado";
-                cantidadAgregada[index].value = 0;
-            }
-
-            function agregarProductos() {
-                listaProducto[index].cantidadTotal += parseInt(cantidadAgregada[index].value);
-                cerrarOpciones()
-                let crearProducto = document.querySelector(".lista-productos");
-                crearProducto.innerHTML = `<p></p>`;
-                msj = " "
-                for (const element of listaProducto) {
-                    if (element.cantidadTotal > 0) {
-                        msj += element.nombre + "   x" + element.cantidadTotal + "\n";
-                    }
-                }
-                crearProducto.innerText = `${msj}`;
-            }
-
-            btnAgregar[index].addEventListener("click", abrirOpciones);
-            btnCancelar[index].addEventListener("click", cerrarOpciones);
-            btnSubmit[index].addEventListener("click", agregarProductos);
-            console.log(listaProducto[index].nombre);
-            console.log(cantidadAgregada[index].value)
+        function abrirOpciones() {
+            contenedor[index].id = "contenedor-abierto";
         }
+
+        function cerrarOpciones() {
+            contenedor[index].id = "contenedor-cerrado";
+            cantidadAgregada[index].Placeholder = "Ingrese la cantidad..."
+        }
+
+        function agregarProductos() {
+            listaProducto[index].cantidadTotal += parseInt(cantidadAgregada[index].value);
+            cerrarOpciones()
+            let crearProducto = document.querySelector(".lista-productos");
+            crearProducto.innerHTML = `<p></p>`;
+            msj = " "
+            for (const element of listaProducto) {
+                if (element.cantidadTotal > 0) {
+                    msj += element.nombre + "   x" + element.cantidadTotal + "\n";
+                }
+            }
+            crearProducto.innerText = `${msj}`;
+        }
+
+        btnAgregar[index].addEventListener("click", abrirOpciones);
+        btnCancelar[index].addEventListener("click", cerrarOpciones);
+        btnSubmit[index].addEventListener("click", agregarProductos);
+        console.log(listaProducto[index].nombre);
+        console.log(cantidadAgregada[index].value)
     })(i);
 }
 
