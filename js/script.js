@@ -31,8 +31,8 @@ let cantidadAgregada = document.getElementsByClassName("input-agregar");
 
 
 
-var g = document.getElementsByClassName('boton-agregar');
-for (var i = 0, len = g.length; i < len; i++) {
+let g = document.getElementsByClassName('boton-agregar');
+for (let i = 0, len = g.length; i < len; i++) {
 
     (function(index) {
 
@@ -62,8 +62,6 @@ for (var i = 0, len = g.length; i < len; i++) {
         btnAgregar[index].addEventListener("click", abrirOpciones);
         btnCancelar[index].addEventListener("click", cerrarOpciones);
         btnSubmit[index].addEventListener("click", agregarProductos);
-        console.log(listaProducto[index].nombre);
-        console.log(cantidadAgregada[index].value)
     })(i);
 }
 
