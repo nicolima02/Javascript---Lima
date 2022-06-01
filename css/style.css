@@ -10,6 +10,26 @@
     margin-bottom: 0;
 }
 
+.contenedor-agregar {
+    display: none;
+}
+
+#contenedor-abierto {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+}
+
+.input-agregar {
+    margin-top: 10px;
+}
+
+.botones-submit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
 .productosLlevados p {
     font-size: 1.2rem;
     margin: 0;
