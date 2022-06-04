@@ -28,37 +28,91 @@ let btnAgregar = document.getElementsByClassName("boton-agregar");
 let btnCancelar = document.getElementsByClassName("cancelar");
 let btnSubmit = document.getElementsByClassName("enviar");
 let cantidadAgregada = document.getElementsByClassName("input-agregar");
-
-
+let crearProducto = document.querySelector(".cantidad-productos");
+let crearPrecio = document.querySelector(".precios-carrito");
+let crearTotal = document.querySelector(".precioTotal-carrito");
+let btnBorrar = document.querySelector('.borrar-pedido');
+cont = 0;
 
 let g = document.getElementsByClassName('boton-agregar');
 for (let i = 0, len = g.length; i < len; i++) {
 
     (function(index) {
-
         function abrirOpciones() {
             contenedor[index].id = "contenedor-abierto";
         }
 
+
+
         function cerrarOpciones() {
             contenedor[index].id = "contenedor-cerrado";
-            cantidadAgregada[index].Placeholder = "Ingrese la cantidad..."
+            cantidadAgregada[index].value = 0;
         }
 
         function agregarProductos() {
+            cont = 0;
             listaProducto[index].cantidadTotal += parseInt(cantidadAgregada[index].value);
             cerrarOpciones()
-            let crearProducto = document.querySelector(".lista-productos");
-            crearProducto.innerHTML = `<p></p>`;
-            msj = " "
-            for (const element of listaProducto) {
-                if (element.cantidadTotal > 0) {
-                    msj += element.nombre + "   x" + element.cantidadTotal + "\n";
+            crearProducto.innerHTML = ``;
+            crearPrecio.innerHTML = ``;
+            crearTotal.innerHTML = ``;
+            sumaTotal = sumaTot(listaProducto, total);
+            for (const el of listaProducto) {
+                crearProducto.innerHTML += `<div class="display-none" id="1"><p>${el.nombre} </p> <p> x${el.cantidadTotal}</p> <a href="#" class="boton-quitar">Quitar<a></div>`;
+                productos = document.getElementsByClassName("display-none");
+                suma = el.cantidadTotal * el.precio;
+                crearPrecio.innerHTML += `<div class="none"><p>$ ${suma}</p></div>`;
+                precios0 = document.getElementsByClassName("none");
+                if (el.cantidadTotal != 0) {
+                    productos[cont].id = "productos-carrito";
+                    precios0[cont].id = "productos-carrito";
+                }
+
+
+                crearTotal.innerHTML = `<div class="separador-total"></div><p>$ ${sumaTotal}</p>`;
+                btnQuitar = document.getElementsByClassName("boton-quitar");
+                cont += 1;
+                let k = document.getElementsByClassName('boton-quitar');
+                for (let j = 0, len = k.length; j < len; j++) {
+                    (function(index2) {
+                        function abrirRange() {
+                            crearProducto.innerHTML = `<input type="range" class="rangeSacar" value="0" min="0" max="${listaProducto[index2].cantidadTotal}" oninput="this.nextElementSibling.value = this.value">
+                            <output>0</output><input type="submit" value="✔Aceptar" class="aceptar-sacar">`;
+                            range = document.querySelector(".rangeSacar");
+                            btnAceptarSacar = document.querySelector(".aceptar-sacar");
+                            btnAceptarSacar.addEventListener("click", sacarProductos);
+                        }
+
+
+                        function sacarProductos() {
+                            listaProducto[index2].cantidadTotal -= parseInt(range.value);
+                            agregarProductos()
+                        }
+
+                        btnQuitar[index2].addEventListener("click", abrirRange)
+
+
+                    })(j);
+
                 }
             }
-            crearProducto.innerText = `${msj}`;
+
         }
 
+
+
+        function borrarPedido() {
+
+            crearProducto.innerHTML = `<p>Vacio</p>`;
+            crearPrecio.innerHTML = `<p>Vacio</p>`
+            crearTotal.innerHTML = `<div class="separador-total"></div><p>Vacio</p>`
+            for (i of listaProducto) {
+                i.cantidadTotal = 0;
+            }
+        }
+
+        btnBorrar.addEventListener("click", borrarPedido);
+        cantidadAgregada[index].value = 0;
         btnAgregar[index].addEventListener("click", abrirOpciones);
         btnCancelar[index].addEventListener("click", cerrarOpciones);
         btnSubmit[index].addEventListener("click", agregarProductos);
@@ -67,6 +121,30 @@ for (let i = 0, len = g.length; i < len; i++) {
 
 
 
+
+
+let carrito = document.querySelector(".carrito");
+let listaCarrito = document.querySelector(".productosLlevados");
+
+carrito.id = "carrito-no-desplegado";
+
+function abrirCarrito() {
+    if (carrito.id == "carrito-no-desplegado") {
+        listaCarrito.id = "carrito-abierto";
+        carrito.id = "carrito-desplegado";
+
+
+    } else if (carrito.id == "carrito-desplegado") {
+
+
+        listaCarrito.id = "carrito-cerrado";
+        carrito.id = "carrito-no-desplegado";
+    }
+
+
+}
+
+carrito.addEventListener("click", abrirCarrito);
 
 
 // while (option != 0) {

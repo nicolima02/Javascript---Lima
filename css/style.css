@@ -3,11 +3,134 @@
 }
 
 .productosLlevados {
-    background: linear-gradient(to right, gray 20%, transparent 80%);
-    width: 50%;
-    height: auto;
-    margin-top: 40px;
-    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    background: rgb(211, 211, 211);
+    width: 30%;
+    height: 60%;
+    top: 6%;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 10% 70% 10% 10%;
+    grid-template-areas: "columna1-carrito columna1-carrito" "cantidad-carrito precios-carrito" "total-carrito precioTotal-carrito" "pagar-carrito pagar-carrito";
+    display: none;
+}
+
+#carrito-abierto {
+    display: grid;
+}
+
+.botones-carrito {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.pagar-carrito {
+    grid-area: pagar-carrito;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botones-carrito input {
+    margin-top: 15px;
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 3.4px violet, 0 0 5px violet, 0 0 15px violet;
+    border: none;
+    color: black;
+    border-radius: 30px;
+}
+
+.display-none {
+    display: none;
+}
+
+.none {
+    display: none;
+}
+
+.productosLlevados p {
+    display: flex;
+    justify-content: center;
+}
+
+.columna1-carrito {
+    grid-area: columna1-carrito;
+}
+
+.separador-carrito {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: violet;
+    margin-left: 10%;
+    height: 3px;
+    width: 80%;
+    box-shadow: 0 0 3.4px violet, 0 0 5px violet, 0 0 15px violet;
+}
+
+.range-num {
+    width: 10%;
+}
+
+.range-sacar {
+    width: 60%;
+}
+
+#productos-carrito {
+    visibility: visible;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.borrar-pedido {
+    background-color: red!important;
+    box-shadow: 0 0 3.4px red, 0 0 5px red, 0 0 15px red!important;
+    color: white!important;
+}
+
+#productos-carrito p {
+    padding-left: 10px;
+}
+
+#productos-carrito a {
+    color: red;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+#productos-carrito a:hover {
+    color: rgb(196, 0, 0);
+}
+
+.cantidad-carrito {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cantidad-productos {}
+
+.separador-total {
+    background: violet;
+    box-shadow: 0 0 3.4px violet, 0 0 5px violet, 0 0 15px violet;
+    height: 3px;
+    width: 100%;
+}
+
+.total-carrito {
+    display: block;
+}
+
+.separador-vertical-carrito {
+    display: flex;
+    background: violet;
+    box-shadow: 0 0 3.4px violet, 0 0 5px violet, 0 0 15px violet;
+    width: 2px;
+    height: 115%;
 }
 
 .contenedor-agregar {
@@ -873,7 +996,6 @@ ul {
     .diseños-alquiler {
         margin-top: 30px;
     }
-    .carrousel-alquiler {}
     .cont-carousel-index {
         background: transparent;
     }
