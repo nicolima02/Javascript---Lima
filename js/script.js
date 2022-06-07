@@ -1,15 +1,45 @@
-function Producto(nombre, precio, codigo, cantidadTotal) {
-    this.nombre = nombre;
-    this.precio = precio;
-    this.codigo = codigo;
-    this.cantidadTotal = cantidadTotal;
-}
+localStorage.setItem("Producto1", JSON.stringify({ "nombre": "Cartel naranja", "precio": 500, "codigo": "1111", "cantidadTotal": 0, "html": "" }));
+localStorage.setItem("Producto2", JSON.stringify({ "nombre": "Cartel azul", "precio": 1000, "codigo": "2222", "cantidadTotal": 0, "html": "" }));
+localStorage.setItem("Producto3", JSON.stringify({ "nombre": "Cartel violeta", "precio": 2000, "codigo": "3333", "cantidadTotal": 0, "html": "" }));
+localStorage.setItem("Producto4", JSON.stringify({ "nombre": "Cartel rojo", "precio": 1800, "codigo": "4444", "cantidadTotal": 0, "html": "" }));
+localStorage.setItem("Producto5", JSON.stringify({ "nombre": "Cartel blanco", "precio": 1450, "codigo": "5555", "cantidadTotal": 0, "html": "" }));
 
-let producto1 = new Producto("Cartel naranja", 500, "1111", 0);
-let producto2 = new Producto("Cartel azul", 1000, "2222", 0);
-let producto3 = new Producto("Cartel violeta", 2000, "3333", 0);
 
-listaProducto = [producto1, producto2, producto3];
+let producto1 = JSON.parse(localStorage.getItem("Producto1"));
+let producto2 = JSON.parse(localStorage.getItem("Producto2"));
+let producto3 = JSON.parse(localStorage.getItem("Producto3"));
+let producto4 = JSON.parse(localStorage.getItem("Producto4"));
+let producto5 = JSON.parse(localStorage.getItem("Producto5"));
+
+listaProducto = [producto1, producto2, producto3, producto4, producto5];
+
+// let listaTrabajos = document.querySelector(".img-Trabajos");
+
+
+
+// let listaCards = listaTrabajos.getElementsByTagName("li");
+
+// for (i = 0; i < listaProducto.length; i++) {
+//     listaProducto[i].html = listaCards[i].innerHTML;
+// }
+
+
+// listaProducto.sort(function(a, b) {
+//     if (a.precio < b.precio) {
+//         return 1;
+//     } else if (a.precio > b.precio) {
+//         return -1;
+//     }
+// });
+
+// listaTrabajos.innerHTML = ""
+
+
+
+// for (el of listaProducto) {
+//     listaTrabajos.innerHTML += `<li>${el.html}</li>`;
+// }
+
 
 option = -1;
 
@@ -125,6 +155,7 @@ for (let i = 0, len = g.length; i < len; i++) {
 
 let carrito = document.querySelector(".carrito");
 let listaCarrito = document.querySelector(".productosLlevados");
+let btnPagar = document.querySelector(".boton-pagar");
 
 carrito.id = "carrito-no-desplegado";
 
@@ -144,6 +175,12 @@ function abrirCarrito() {
 
 }
 
+function abrirPagar() {
+
+}
+
+
+btnPagar.addEventListener("click", abrirPagar);
 carrito.addEventListener("click", abrirCarrito);
 
 

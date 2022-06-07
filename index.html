@@ -89,7 +89,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Cartel naranja</h5>
                             <p class="card-text"><strong>$500</strong></p>
-                            <a href="#" class="btn btn-primary boton-agregar">Agregar al carrito</a>
+                            <a class="btn btn-primary boton-agregar">Agregar al carrito</a>
                             <div class="contenedor-agregar" id="contenedor-cerrado">
                                 <input type="number" placeholder="Ingrese la cantidad..." class="input-agregar" id="input-agregar1" min="1">
                                 <div class="botones-submit">
@@ -106,7 +106,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Cartel azul</h5>
                             <p class="card-text"><strong>$1000</strong></p>
-                            <a href="#" class="btn btn-primary boton-agregar">Agregar al carrito</a>
+                            <a class="btn btn-primary boton-agregar">Agregar al carrito</a>
                             <div class="contenedor-agregar">
                                 <input type="number" placeholder="Ingrese la cantidad..." class="input-agregar" id="input-agregar2" min="1">
                                 <div class="botones-submit">
@@ -123,9 +123,43 @@
                             <h5 class="card-title">Cartel violeta</h5>
                             <p class="card-text"><strong>$2000</strong></p>
 
-                            <a href="#" class="btn btn-primary boton-agregar">Agregar al carrito</a>
+                            <a class="btn btn-primary boton-agregar">Agregar al carrito</a>
                             <div class="contenedor-agregar">
                                 <input type="number" placeholder="Ingrese la cantidad..." class="input-agregar" id="input-agregar3" min="1">
+                                <div class="botones-submit">
+                                    <input type="submit" class="enviar" value="✔Aceptar" id="boton-enviar">
+                                    <input type="submit" class="cancelar" value="❌Cancelar" id="boton-cancelar">
+                                </div>
+                            </div>
+                        </div>
+                </li>
+                <li>
+                    <div class="card" style="width: 25rem;">
+                        <img class="card-img-top" src="img/Trabajo4.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Cartel rojo</h5>
+                            <p class="card-text"><strong>$1800</strong></p>
+
+                            <a class="btn btn-primary boton-agregar">Agregar al carrito</a>
+                            <div class="contenedor-agregar">
+                                <input type="number" placeholder="Ingrese la cantidad..." class="input-agregar" id="input-agregar4" min="1">
+                                <div class="botones-submit">
+                                    <input type="submit" class="enviar" value="✔Aceptar" id="boton-enviar">
+                                    <input type="submit" class="cancelar" value="❌Cancelar" id="boton-cancelar">
+                                </div>
+                            </div>
+                        </div>
+                </li>
+                <li>
+                    <div class="card" style="width: 25rem;">
+                        <img class="card-img-top" src="img/Trabajo5.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Cartel blanco</h5>
+                            <p class="card-text"><strong>$1450</strong></p>
+
+                            <a class="btn btn-primary boton-agregar">Agregar al carrito</a>
+                            <div class="contenedor-agregar">
+                                <input type="number" placeholder="Ingrese la cantidad..." class="input-agregar" id="input-agregar5" min="1">
                                 <div class="botones-submit">
                                     <input type="submit" class="enviar" value="✔Aceptar" id="boton-enviar">
                                     <input type="submit" class="cancelar" value="❌Cancelar" id="boton-cancelar">
@@ -166,10 +200,58 @@
             <div class="pagar-carrito">
                 <div class="separador-total"></div>
                 <div class="botones-carrito">
-                    <input type="submit" value="PAGAR" id="pagar-cerrado">
+                    <input type="submit" value="PAGAR" id="pagar-cerrado" class="boton-pagar">
                     <input type="submit" value="Borrar pedido" class="borrar-pedido">
                 </div>
             </div>
+        </div>
+        <div class="contenedor-pagar">
+            <form class="form-none">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress2">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                      Check me out
+                    </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
         </div>
 
         <div>

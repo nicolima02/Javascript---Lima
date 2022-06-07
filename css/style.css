@@ -87,6 +87,10 @@
     padding-bottom: 20px;
 }
 
+.form-none {
+    display: none;
+}
+
 .borrar-pedido {
     background-color: red!important;
     box-shadow: 0 0 3.4px red, 0 0 5px red, 0 0 15px red!important;
@@ -112,6 +116,13 @@
     justify-content: space-around;
 }
 
+.contenedor-pagar {
+    width: 30%;
+    position: absolute;
+    top: 13%;
+    right: 31%;
+}
+
 .cantidad-productos {}
 
 .separador-total {
@@ -123,6 +134,10 @@
 
 .total-carrito {
     display: block;
+}
+
+.total-carrito p {
+    transform: translateX(-10%);
 }
 
 .separador-vertical-carrito {
@@ -370,7 +385,8 @@ ul {
 
 .img-Trabajos li {
     width: 25%;
-    margin: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
 }
 
 .cont-procesos {
