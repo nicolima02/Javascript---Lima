@@ -6,8 +6,9 @@
     position: absolute;
     right: 0;
     margin-right: 10px;
-    background: rgb(211, 211, 211);
+    background: white;
     width: 30%;
+    box-shadow: 0 0 10px black;
     height: 60%;
     top: 6%;
     border-radius: 15px;
@@ -111,16 +112,60 @@
     color: rgb(196, 0, 0);
 }
 
+.opciones-pago {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5%;
+}
+
 .cantidad-carrito {
     display: flex;
     justify-content: space-around;
 }
 
-.contenedor-pagar {
-    width: 30%;
+#contenedor-pagar-cerrado {
+    display: none;
+}
+
+#contenedor-pagar-abierto {
+    display: block;
+    padding-top: 2%;
+    background-color: white;
+    box-shadow: 0 0 10px black;
+    width: 50%;
     position: absolute;
     top: 13%;
     right: 31%;
+    padding-bottom: 1%;
+    border-radius: 10px;
+}
+
+#cont-tarjeta-cerrado {
+    display: none;
+}
+
+#cont-tarjeta-abierto {
+    width: 90%;
+    margin: auto;
+}
+
+.boton-pagar2 {
+    cursor: pointer;
+    background-color: #0E68E1;
+    display: flex;
+    color: white;
+    border-radius: 30px;
+    align-content: center;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.boton-pagar2 p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0;
 }
 
 .cantidad-productos {}
