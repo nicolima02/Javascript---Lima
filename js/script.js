@@ -87,7 +87,9 @@ btnMayorMenor.addEventListener("click", mayorMenor);
 
 
 
-
+let crearProducto = document.querySelector(".cantidad-productos");
+let crearPrecio = document.querySelector(".precios-carrito");
+let crearTotal = document.querySelector(".precioTotal-carrito");
 
 let g = document.getElementsByClassName('boton-agregar');
 
@@ -97,9 +99,8 @@ function main() {
     let btnCancelar = document.getElementsByClassName("cancelar");
     let btnSubmit = document.getElementsByClassName("enviar");
     let cantidadAgregada = document.getElementsByClassName("input-agregar");
-    let crearProducto = document.querySelector(".cantidad-productos");
-    let crearPrecio = document.querySelector(".precios-carrito");
-    let crearTotal = document.querySelector(".precioTotal-carrito");
+
+
     let btnBorrar = document.querySelector('.borrar-pedido');
     cont = 0;
     for (let i = 0, len = g.length; i < len; i++) {
@@ -171,15 +172,7 @@ function main() {
 
 
 
-            function borrarPedido() {
 
-                crearProducto.innerHTML = `<p>Vacio</p>`;
-                crearPrecio.innerHTML = `<p>Vacio</p>`
-                crearTotal.innerHTML = `<div class="separador-total"></div><p>Vacio</p>`
-                for (i of listaProducto) {
-                    i.cantidadTotal = 0;
-                }
-            }
             btnBorrar.addEventListener("click", borrarPedido);
             cantidadAgregada[index].value = 0;
             btnAgregar[index].addEventListener("click", abrirOpciones);
@@ -189,6 +182,15 @@ function main() {
     }
 }
 
+function borrarPedido() {
+
+    crearProducto.innerHTML = `<p>Vacio</p>`;
+    crearPrecio.innerHTML = `<p>Vacio</p>`
+    crearTotal.innerHTML = `<div class="separador-total"></div><p>Vacio</p>`
+    for (i of listaProducto) {
+        i.cantidadTotal = 0;
+    }
+}
 main();
 
 
@@ -241,3 +243,50 @@ function abrirTarjeta() {
 
 btnPagar.addEventListener("click", abrirPagar);
 carrito.addEventListener("click", abrirCarrito);
+btnPagar2 = document.querySelector(".boton-pagar2");
+nombre = document.querySelector(".name");
+numero = document.querySelector(".card-number");
+codigoSeg = document.querySelector(".cvc");
+
+
+let listaPedido = [];
+
+
+function subida() {
+    usuario = nombre.value;
+    listaPedido = [];
+    for (el of listaProducto) {
+        if (el.cantidadTotal != 0) {
+            listaPedido.push(el);
+        }
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'PUT',
+            body: JSON.stringify({
+                listaPedido,
+                sumaTotal,
+                usuario,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    Swal.fire("Pagado!")
+    nombre.value = "";
+    numero.value = "";
+    codigoSeg.value = "";
+    borrarPedido()
+}
+
+setInterval(() => {
+    if ((nombre.value.toString() == "") || ((numero.value.toString() == "")) || ((codigoSeg.value.toString() == ""))) {
+        btnPagar2.classList.add("opacity")
+        btnPagar2.removeEventListener("click", subida);
+    } else {
+        btnPagar2.classList.remove("opacity")
+        btnPagar2.addEventListener("click", subida)
+    }
+}, 500)
