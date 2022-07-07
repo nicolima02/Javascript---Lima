@@ -142,7 +142,7 @@ function main() {
 
                     crearTotal.innerHTML = `<div class="separador-total"></div><p>$ ${sumaTotal}</p>`;
                     btnQuitar = document.getElementsByClassName("boton-quitar");
-                    cont += 1;
+                    cont++;
                     let k = document.getElementsByClassName('boton-quitar');
                     for (let j = 0, len = k.length; j < len; j++) {
                         (function(index2) {
@@ -233,6 +233,21 @@ function abrirPagar() {
         contPagar.id = "contenedor-pagar-cerrado";
         btnPagar.value = "PAGAR"
     }
+    setInterval(() => {
+        let aa = document.querySelector(".expiry-wrapper");
+        let bb = aa.getElementsByTagName("div");
+        bb = bb[0];
+        fechaVenc = bb.getElementsByTagName("input");
+        mesVenc = fechaVenc[1].value;
+        añoVenc = fechaVenc[2].value;
+        if ((nombre.value.toString() == "") || ((numero.value.toString() == "")) || ((codigoSeg.value.toString() == "")) || ((mesVenc == "")) || ((añoVenc == ""))) {
+            btnPagar2.classList.add("opacity")
+            btnPagar2.removeEventListener("click", subida);
+        } else {
+            btnPagar2.classList.remove("opacity")
+            btnPagar2.addEventListener("click", subida)
+        }
+    }, 500)
 }
 
 
@@ -249,8 +264,11 @@ numero = document.querySelector(".card-number");
 codigoSeg = document.querySelector(".cvc");
 
 
-let listaPedido = [];
 
+
+const DateTime = luxon.DateTime;
+
+let listaPedido = [];
 
 function subida() {
     usuario = nombre.value;
@@ -261,32 +279,34 @@ function subida() {
         }
     }
 
-    fetch('https://jsonplaceholder.typicode.com/posts/1', {
-            method: 'PUT',
-            body: JSON.stringify({
-                listaPedido,
-                sumaTotal,
-                usuario,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+    let mesVenc = (fechaVenc[1].value).toString();
+    let añoVenc = (fechaVenc[2].value).toString();
+    let numTarjeta = (numero.value).toString();
+    let codigo = (codigoSeg.value).toString();
+    let fechaCompra = DateTime.now();
+    fechaCompra = fechaCompra.toLocaleString(DateTime.DATE_FULL);
+    infopost = {
+        "lista": listaPedido,
+        "Total": sumaTotal,
+        "usuario": usuario,
+        "Numero tarjeta": numTarjeta,
+        "mes de venc": mesVenc,
+        "año de venc": añoVenc,
+        "codigo seg": codigo,
+        "fecha": fechaCompra,
+    }
+    $.post(
+        "https://serverferru.herokuapp.com/api/insert/pedidos",
+        infopost,
+        (respuesta, estado) => {
+            if (estado === "success") {
+                console.log(respuesta);
+            }
+        }
+    );
     Swal.fire("Pagado!")
     nombre.value = "";
     numero.value = "";
     codigoSeg.value = "";
     borrarPedido()
 }
-
-setInterval(() => {
-    if ((nombre.value.toString() == "") || ((numero.value.toString() == "")) || ((codigoSeg.value.toString() == ""))) {
-        btnPagar2.classList.add("opacity")
-        btnPagar2.removeEventListener("click", subida);
-    } else {
-        btnPagar2.classList.remove("opacity")
-        btnPagar2.addEventListener("click", subida)
-    }
-}, 500)
